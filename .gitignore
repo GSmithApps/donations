@@ -12,5 +12,5 @@ __pycache__/
 .quarto_cache/
 .quarto_cache.db
 .quarto_cache.db-journal
-_site/
+/_site/
 /.quarto/
