@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "donations.html",
+    "href": "donations.html",
+    "title": "Donations",
+    "section": "",
+    "text": "I recently took the trial pledge at Giving What We Can, and I’ve been donating to GiveWell. Here is my first year of donations.\n\n\nCode\nfrom graph_donations import Donation, graph_donations\nfrom datetime import date\n\nsigma = 8  # controls spread of the diffusion (in days)\npadding_days = 30\n\n# Sample data\nfirst_donation = Donation(date(2024, 2, 15), 5181.30)\nsecond_donation = Donation(date(2024, 9, 16), 7318.04)\nthird_donation = Donation(date(2024, 10, 10), 15774.05)\ndonations = [first_donation, second_donation, third_donation]\n\ndiffused_amounts = graph_donations(\n  sigma,\n  padding_days,\n  donations\n)\n\n\n\n\n\n\n\n\n\nThis plot is my donations with a diffusion kernel applied just to smooth them out."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This is where I’m testing learning about Quarto\nAs some example content to tinker with, I killed two birds with one stone and made a page about recent donations to GiveWell. I wanted to plot recent donations, and I wanted to see if I could smooth them out over time, and I think it worked nicely.\nOne remaining item I have for learning quarto is figuring out how to publish it to github pages."
+  }
+]
