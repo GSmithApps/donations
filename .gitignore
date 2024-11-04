@@ -1,18 +1,22 @@
 # ds store
 .DS_Store
 
-# # python stuff
-# __pycache__/
-# *.pyc
-# *.pyo
-# *.pyd
+# python stuff
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
 
-# # quarto stuff
-# .quarto/
-# .quarto_cache/
-# .quarto_cache.db
-# .quarto_cache.db-journal
+# quarto stuff
+.quarto/
+.quarto_cache/
+.quarto_cache.db
+.quarto_cache.db-journal
+
+
+# a top level folder called graph_donations_files
+graph_donations_files/
 
 # html files
 *.html
