@@ -64,6 +64,7 @@ def graph_donations(
     # Format y-axis as currency
     plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x:,.0f}'))
 
+    plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
     plt.show()
 
