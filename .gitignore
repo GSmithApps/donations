@@ -13,10 +13,6 @@ __pycache__/
 .quarto_cache/
 .quarto_cache.db
 .quarto_cache.db-journal
+_output/
 
-
-# a top level folder called graph_donations_files
-graph_donations_files/
-
-# html files
-*.html
+/.quarto/
