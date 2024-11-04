@@ -1,0 +1,18 @@
+# ds store
+.DS_Store
+
+# # python stuff
+# __pycache__/
+# *.pyc
+# *.pyo
+# *.pyd
+
+
+# # quarto stuff
+# .quarto/
+# .quarto_cache/
+# .quarto_cache.db
+# .quarto_cache.db-journal
+
+# html files
+*.html

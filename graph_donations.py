@@ -68,3 +68,4 @@ def graph_donations(
     plt.tight_layout()
     plt.show()
 
+    return total_diffusion
