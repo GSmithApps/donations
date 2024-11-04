@@ -21,13 +21,14 @@ from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import gaussian_kde
-import pandas as pd
 
 @dataclass
 class Donation:
     date: date
     amount: float
+
+sigma = 8  # controls spread of the diffusion (in days)
+padding_days = 30
 
 # Sample data
 first_donation = Donation(date(2024, 2, 15), 5181.30)
@@ -35,62 +36,58 @@ second_donation = Donation(date(2024, 9, 16), 7318.04)
 third_donation = Donation(date(2024, 10, 10), 15774.05)
 donations = [first_donation, second_donation, third_donation]
 
-# Convert dates to numerical values for KDE
-dates_numeric = [datetime.combine(d.date, datetime.min.time()).timestamp() for d in donations]
-
-# Add padding to date range (30 days before and after)
-min_date = min(dates_numeric) - (40 * 24 * 60 * 60)  # 30 days in seconds
-max_date = max(dates_numeric) + (40 * 24 * 60 * 60)  # 30 days in seconds
-
+# Convert dates to numerical values (days since earliest donation)
+base_date = min(d.date for d in donations)
+dates_numeric = [(d.date - base_date).days for d in donations]
 amounts = [d.amount for d in donations]
+total_amount = sum(amounts)
 
-# Create a range of dates for smooth KDE with extended range
-date_range = np.linspace(min_date, max_date, 200)
+# Create time grid with exactly one point per day
+x_grid = np.arange(
+    min(dates_numeric) - padding_days,
+    max(dates_numeric) + padding_days + 1
+)  # integers for days
 
-# Calculate KDE
-kde = gaussian_kde(dates_numeric, weights=amounts, bw_method=0.073)
-density = kde(date_range)
+# Function to create a Gaussian kernel
+def gaussian(x, mu, sigma):
+    return np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+
+# Sum up the diffused donations with relative weights
+total_diffusion = np.zeros_like(x_grid, dtype=float)
+for date_num, amount in zip(dates_numeric, amounts):
+    total_diffusion += amount * gaussian(x_grid, date_num, sigma)
+
+# Normalize so sum equals total donations (since width=1, sum=area)
+total_diffusion *= total_amount / sum(total_diffusion)
 
 # Create the visualization
 plt.figure(figsize=(12, 6))
 
-# Plot the KDE
-ax1 = plt.gca()
-ax1.plot(
-    [datetime.fromtimestamp(x) for x in date_range],
-    density,
+# Plot the diffusion
+plt.plot(
+    [base_date + timedelta(days=int(x)) for x in x_grid],
+    total_diffusion,
     'b-',
-    label='Donation Density',
     alpha=0.6
 )
-ax1.fill_between(
-    [datetime.fromtimestamp(x) for x in date_range],
-    density,
+plt.fill_between(
+    [base_date + timedelta(days=int(x)) for x in x_grid],
+    total_diffusion,
     alpha=0.3
 )
 
-# Plot the scatter points for actual donations
-ax2 = ax1.twinx()
-ax2.scatter(
-    [datetime.fromtimestamp(x) for x in dates_numeric],
-    amounts,
-    color='red',
-    s=100,
-    label='Donations',
-    zorder=5
-)
-
 # Formatting
-ax1.set_xlabel('Date')
-ax1.set_ylabel('Density')
-ax2.set_ylabel('Amount ($)')
+plt.xlabel('Date')
+plt.ylabel('Dollars per Day')
+plt.title('Donations Diffused Over Time')
 
-# Add title and adjust layout
-plt.title('Donation Amount Distribution Over Time')
+# Format y-axis as currency
+plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x:,.0f}'))
+
 plt.tight_layout()
-
-# Show plot
 plt.show()
 
-
+# Verify that sum equals total
+print(f"Total donations: ${total_amount:,.2f}")
+print(f"Sum of daily amounts: ${sum(total_diffusion):.2f}")
 # %%
