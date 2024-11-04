@@ -1,2 +1,19 @@
 project:
-  output-dir: "_output"
+  type: website
+
+website:
+  title: "quarto-website-try"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+
