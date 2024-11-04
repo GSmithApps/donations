@@ -1,51 +1,32 @@
 ---
-title: "Quarto Basics"
+title: "My Donations"
 format:
   html:
     code-fold: true
 jupyter: python3
 ---
 
-mine
+Here are some donations
 
 ```{python}
-from my_py import whaddup
-whaddup()
-```
+from quarto_example import Donation, graph_donations
+from datetime import date
 
-For a demonstration of a line plot on a polar axis, see @fig-polar.
+sigma = 8  # controls spread of the diffusion (in days)
+padding_days = 30
 
-```{python}
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
+# Sample data
+first_donation = Donation(date(2024, 2, 15), 5181.30)
+second_donation = Donation(date(2024, 9, 16), 7318.04)
+third_donation = Donation(date(2024, 10, 10), 15774.05)
+donations = [first_donation, second_donation, third_donation]
 
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 4 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
+graph_donations(
+  sigma,
+  padding_days,
+  donations
 )
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
+
 ```
 
-Here is some more stuff
-
-```{python}
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-# Load an example dataset
-data = sns.load_dataset('iris')
-
-# Create a basic scatter plot
-sns.scatterplot(data=data, x='sepal_length', y='sepal_width')
-
-# Show the plot
-plt.show()
-```
 
