@@ -9,8 +9,8 @@ __pycache__/
 
 
 # quarto stuff
-.quarto/
 .quarto_cache/
 .quarto_cache.db
 .quarto_cache.db-journal
 _site/
+/.quarto/
