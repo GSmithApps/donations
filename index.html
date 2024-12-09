@@ -166,26 +166,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>I recently took the trial pledge at Giving What We Can, and I’ve been donating to GiveWell. Here is my first year of donations.</p>
-<div id="04833461" class="cell" data-execution_count="1">
+<div id="52fcdfbd" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> graph_donations <span class="im">import</span> Donation, graph_donations</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="dv">8</span>  <span class="co"># controls spread of the diffusion (in days)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>padding_days <span class="op">=</span> <span class="dv">30</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>first_donation <span class="op">=</span> Donation(date(<span class="dv">2024</span>, <span class="dv">2</span>, <span class="dv">15</span>), <span class="fl">5181.30</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>second_donation <span class="op">=</span> Donation(date(<span class="dv">2024</span>, <span class="dv">9</span>, <span class="dv">16</span>), <span class="fl">7318.04</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>third_donation <span class="op">=</span> Donation(date(<span class="dv">2024</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="fl">15774.05</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>donations <span class="op">=</span> [first_donation, second_donation, third_donation]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>diffused_amounts <span class="op">=</span> graph_donations(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  sigma,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  padding_days,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  donations</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>graph_donations(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  sigma<span class="op">=</span><span class="dv">8</span>, <span class="co"># controls spread of the diffusion (in days)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  padding_days<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  donations<span class="op">=</span>[</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Donation(date(<span class="dv">2024</span>, <span class="dv">2</span>, <span class="dv">15</span>), <span class="fl">5181.30</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    Donation(date(<span class="dv">2024</span>, <span class="dv">9</span>, <span class="dv">16</span>), <span class="fl">7318.04</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Donation(date(<span class="dv">2024</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="fl">15774.05</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    Donation(date(<span class="dv">2024</span>, <span class="dv">11</span>, <span class="dv">11</span>), <span class="fl">13548.43</span> <span class="op">+</span> <span class="fl">6305.20</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
